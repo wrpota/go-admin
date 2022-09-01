@@ -2,18 +2,16 @@ kind: pipeline
 type: docker
 name: build
 steps:
-- name: build
-  image: golang:alpine
-  pull: if-not-exists # always never
-  environment:
-    KEY: VALUE
-  commands:
-    - echo $KEY
-    - pwd
-    - ls
-    - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
-    - ./app
-
+- name: sync-to-github
+  image: appleboy/drone-git-push
+  settings:
+    branch: master
+    remote: git@github.com:wrpota/go-admin.git
+    remote_name: master
+    force: true
+    commit: true
+    ssh_key: 
+      from_secret: SSH-KEY
 trigger:
   branch:
   - master
