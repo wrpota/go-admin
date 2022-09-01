@@ -16,6 +16,6 @@ func (u *handler) HelloWorld() gin.HandlerFunc {
 		if err := c.Bind(user); err != nil {
 			return
 		}
-		response.Success(c, "success", user)
+		response.Success(c, "1213success", user)
 	}
 }

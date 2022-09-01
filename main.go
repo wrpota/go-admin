@@ -9,5 +9,5 @@ import (
 func main() {
 	s := router.NewHttpServer()
 
-	s.Run(":" + configs.Get().GetString("HttpServer.Web.Port"))
+	s.Run("localhost:" + configs.Get().GetString("HttpServer.Web.Port"))
 }

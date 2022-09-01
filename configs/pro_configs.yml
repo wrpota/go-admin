@@ -2,7 +2,7 @@ AppDebug: false # debug=true 调试模式，日志优先显示在控制台， de
 
 App:
   Name: "go-gin"
-  Language: "zh"
+  AccessSecret: "jnwj4CSwHTGfuNSG4rrwcTcnD8s88gHy"
 
 HttpServer:
   Web:

@@ -2,6 +2,7 @@ AppDebug: true # debug=true 调试模式，日志优先显示在控制台， deb
 
 App:
   Name: "go-gin"
+  AccessSecret: "jnwj4CSwHTGfuNSG4rrwcTcnD8s88gHy"  #自行修改
 
 HttpServer:
   Web:

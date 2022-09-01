@@ -14,6 +14,7 @@ import (
 	"gorm.io/driver/sqlserver"
 	"gorm.io/gorm"
 	gormLog "gorm.io/gorm/logger"
+	"gorm.io/gorm/schema"
 )
 
 func GetDbWriteDriver(sqlType string) (*gorm.DB, error) {
@@ -27,6 +28,10 @@ func GetDbWriteDriver(sqlType string) (*gorm.DB, error) {
 		SkipDefaultTransaction: true,
 		PrepareStmt:            true,
 		Logger:                 redefineLog(sqlType), //拦截、接管 gorm v2 自带日志
+		NamingStrategy: schema.NamingStrategy{
+			TablePrefix:   configs.Get().GetString("Database.Write.Prefix"),
+			SingularTable: true, //取消表名复数形式
+		},
 	})
 	if err != nil {
 		return nil, err
@@ -55,6 +60,10 @@ func GetDbReadDriver(sqlType string) (*gorm.DB, error) {
 		SkipDefaultTransaction: true,
 		PrepareStmt:            true,
 		Logger:                 redefineLog(sqlType), //拦截、接管 gorm v2 自带日志
+		NamingStrategy: schema.NamingStrategy{
+			TablePrefix:   configs.Get().GetString("Database.Read.Prefix"),
+			SingularTable: true, //取消表名复数形式
+		},
 	})
 	if err != nil {
 		return nil, err
